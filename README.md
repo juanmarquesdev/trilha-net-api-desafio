@@ -58,61 +58,61 @@ Esse é o schema (model) de Tarefa, utilizado para passar para os métodos que e
 O código está pela metade, e você deverá dar continuidade obedecendo as regras descritas acima, para que no final, tenhamos um programa funcional. Procure pela palavra comentada "TODO" no código, em seguida, implemente conforme as regras acima.
 
 Buscar o Id no banco utilizando o EF
-´´´csharp
+```csharp
   var tarefa = _context.Tarefas.Find(id);
-´´´
+```
 
 Validar o tipo de retorno. Se não encontrar a tarefa, retornar NotFound,
 caso contrário retornar OK com a tarefa encontrada
-´´´csharp
+```csharp
   if (tarefa == null)
       return NotFound();
 
   return Ok(tarefa);
-´´´
+```
 
 Buscar todas as tarefas no banco utilizando o EF
-´´´csharp
+```csharp
   return Ok(_context.Tarefas.Select(x => x).ToList());
-´´´
+```
 
 Buscar  as tarefas no banco utilizando o EF, que contenha o titulo recebido por parâmetro
 Dica: Usar como exemplo o endpoint ObterPorData
-´´´csharp
+```csharp
   var tarefa = _context.Tarefas.Where(x => x.Titulo == titulo);
   return Ok(tarefa);
-´´´
+```
 
 Buscar  as tarefas no banco utilizando o EF, que contenha o status recebido por parâmetro
 Dica: Usar como exemplo o endpoint ObterPorData
-´´´csharp
+```csharp
   var tarefa = _context.Tarefas.Where(x => x.Status == status);
   return Ok(tarefa);
-´´´
+```
 
 Adicionar a tarefa recebida no EF e salvar as mudanças (save changes)
-´´´csharp
+```csharp
   _context.Tarefas.Add(tarefa);
   _context.SaveChanges();
-´´´
+```
 
 Atualizar as informações da variável tarefaBanco com a tarefa recebida via parâmetro
-´´´csharp
+```csharp
   tarefaBanco.Data = tarefa.Data;
   tarefaBanco.Descricao = tarefa.Descricao;
   tarefaBanco.Status = tarefa.Status;
   tarefaBanco.Titulo = tarefa.Titulo;
-´´´
+```
 
 Atualizar a variável tarefaBanco no EF e salvar as mudanças (save changes)
-´´´csharp
+```csharp
   _context.Tarefas.Update(tarefaBanco);
   _context.SaveChanges();
   return Ok(tarefa);
-´´´
+```
 
 Remover a tarefa encontrada através do EF e salvar as mudanças (save changes)
-´´´csharp
+```csharp
   _context.Tarefas.Remove(tarefaBanco);
   _context.SaveChanges();
-´´´
+```
